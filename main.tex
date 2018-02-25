@@ -29,6 +29,10 @@
 \newcommand{\TODO}[1]{\textcolor{red}{[#1]}}
 \newcommand{\PASS}[1]{\verb| #1|}
 
+% Math related packages
+\usepackage[fleqn]{amsmath}
+\usepackage{esvect}
+
 \usepackage{titlesec}
 
 \titleformat{\section}
@@ -68,10 +72,30 @@ The WOA draws its inspiration from a hunting behavior recorded in rare populatio
 The algorithm uses both the whale's swarming behavior that seeks out potential prey as the exploration phase of the meta-heuristic and the cooperative attack pattern known as bubble-net for the exploitation phase.
 
 \subsubsection*{Bubble-net Foraging: Cetological Background}
-The hunting behavior which informs the WOA relies on a group of whales herding a school of fish and a single whale executing the bubble-net.
-This whale will dive below the target prey and by exploiting the high maneuverability of humpback whales (Wiley et al. 2011) encircles a school of fish with a column of bubbles purposefully emanating from its blow hole.
-The bubbles form an impassable barrier (Wiley et al. 2011) for the fish, and concentric circles corral target prey into a tight area either through an upward-spiral or double loop maneuver (Wiley et al. 2011).
+The hunting behavior which informs the WOA involves a swarm of humpback whales locating, and herding a school of fish.
+One the school of fish has been herded the swarm cooperatively executes a capture method to optimally consume fish with the most interesting behavior coming from a single whale who executes a bubble-net maneuver.
+The bubble-netting whale dives below the target prey and encircles a school of fish with a column of bubbles purposefully emanating from its blow hole (Wiley et al 2011).
+The bubbles form an impassable barrier (Wiley et al. 2011) for the fish, and concentric circles corral target prey into a shrinking area either through an upward-spiral or double loop maneuver (Wiley et al. 2011).
 The ring of bubbles forming the bubble-net can be seen from the surface of the water (figure 1), and as the column of bubbles corrals prey the team of humpback whales lunge from the columns center to feed as seen in figure 2.
+
+\subsubsection*{WOA Mathematically Modeling the Bubble-Net}
+In the exploration phase of the algorithm whales are dispersed throughout the search space using a stochastic process, and will iteratively migrate towards the current best candidate solution (Mirjalili 2016) according to the following equations:
+
+\begin{equation}
+	\vec{D} = |\vec{C}.\vec{X}^*(t) - \vec{X}(t)|
+\end{equation}
+
+\begin{equation}
+	\vec{X}(t + 1) = |\vec{X}(t) - \vec{A}\cdot\vec{D})|
+\end{equation}
+
+\begin{equation}
+	\vec{A} = 2\vec{a}\cdot\vec{r}-\vec{a}
+\end{equation}
+
+\begin{equation}
+	\vec{C} = 2\cdot\vec{r}
+\end{equation}
 
 \section*{WOA Applications and Evolution}
 \subsection*{Data Mining}
