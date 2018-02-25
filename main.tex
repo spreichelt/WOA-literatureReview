@@ -3,7 +3,6 @@
 \usepackage{times}
 \geometry{top=1.0in, bottom=1.0in, left=1.0in, right=1.0in}
 \usepackage{setspace}
-\usepackage{wrapfig}
 \usepackage{fancyhdr}
 \usepackage{fancyvrb} %Need for ventering verbatim using BVerbatim
 \pagestyle{fancy}
@@ -14,6 +13,10 @@
 %To make sure we actually have header 0.5in away from top edge
 %12pt is one-sixth of an inch. Subtract this from 0.5in to get headsep value
 \setlength\headsep{0.333in}
+
+
+% Packages related to figures
+\usepackage{wrapfig}
 
 % Text formatting packages and macros
 %\doublespacing
@@ -47,6 +50,10 @@
 % Math related packages
 \usepackage[fleqn]{amsmath}
 \usepackage{esvect}
+
+% Algorithm package
+\usepackage{algorithmic}
+\usepackage{algorithm}
 
 \begin{document}
 
@@ -146,17 +153,53 @@ Equation 7 introduces a spiral pattern and a mechanism to randomly switch betwee
 
 Where $b$ is a constant for the logarithmic spiral and $l$ is a random number in $[-1, 1]$ (Mirjalili 2016).
 
+\subsubsection*{Algorithm Implementation and Benchmark Results}
+The pseudo code for the WOA in figure 4 is a testament to how simple meta-heuristic swarm algorithms can be in practice.
+The transition between exploration and exploitation is facilitated by $\vec{A}$ gradually reducing in size (Mirjalili \& Lewis 2016), and the entire process utilizes random chance through $p$ and $X_{rand}$.
+
+\begin{wrapfigure}{R}{0.55\textwidth}
+	\caption{WOA pseudo code (Mirjalili \& Lewis 2016)}
+	\begin{minipage}{0.55\textwidth}
+		\begin{algorithm}[H]
+			\begin{algorithmic}
+				\STATE Initialize the whales population $X_i(i = 1,2, \dots, n)$
+				\STATE Calculate the fitness of each search agent
+				\STATE $X^* = $ the best search agent
+				\WHILE {$t <$ maximum number of iterations}
+					\FOR {each search agent}
+						\STATE update a, A, C, l, and p
+						\IF {$p < 0.5$}
+							\IF {$|A| < 1$}
+								\STATE Update the position of the current search agent by Equation 1
+							\ELSE
+								\STATE Select a random search agent ($X_{rand}$)
+								\STATE Update the position of the current search agent by Equation 6
+							\ENDIF
+						\ELSE
+							\STATE Update the position of the current search by Equation 7
+						\ENDIF
+					\ENDFOR
+					\STATE Check if any search agent goes beyond the search space and amend it
+					\STATE Calculate the fitness of each search agent
+					\STATE Update $X^*$ if there is a better solution
+					\STATE $t = t+1$
+				\ENDWHILE
+				\STATE \RETURN $X^*$ 
+			\end{algorithmic}
+		\end{algorithm}
+	\end{minipage}
+\end{wrapfigure}
+
 \section*{WOA Applications and Evolution}
 \subsection*{Data Mining}
 Modern scale problems with vast amounts of available data can be approached using swarm algorithms, particularly when they are enhanced with the parallel computing techniques---i.e. partitioning the search space---that the algorithms easily accommodate (Cicirelli 2015).
 
-\subsubsection*{WOA Pseudocode, Implementation, and Results}
 \TODO{Insert pseudocode algorithm as a figure}
 
 \TODO{Talk about the code, and benchmark results}
 
-\subsection*{Neural Net Feature Reduction}
-\subsection*{Augmented WOA approaches}
+%\subsection*{Neural Net Feature Reduction}
+%\subsection*{Augmented WOA approaches}
 
 \begin{workscited}
 
