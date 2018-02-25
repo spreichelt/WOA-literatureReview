@@ -3,10 +3,7 @@
 \usepackage{times}
 \geometry{top=1.0in, bottom=1.0in, left=1.0in, right=1.0in}
 \usepackage{setspace}
-%\doublespacing
 \usepackage{wrapfig}
-%\usepackage[document]{ragged2e}
-%\setlength\RaggedRightParindent{4em}
 \usepackage{fancyhdr}
 \usepackage{fancyvrb} %Need for ventering verbatim using BVerbatim
 \pagestyle{fancy}
@@ -17,6 +14,24 @@
 %To make sure we actually have header 0.5in away from top edge
 %12pt is one-sixth of an inch. Subtract this from 0.5in to get headsep value
 \setlength\headsep{0.333in}
+
+% Text formatting packages and macros
+%\doublespacing
+%\usepackage[document]{ragged2e}
+%\setlength\RaggedRightParindent{4em}
+\setlength\parindent{0em}
+
+% Reformat section styles
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\fontsize{11}{11}\bfseries\scshape}{\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\normalfont\fontsize{9}{9}\bfseries\itshape}{\thesection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\normalfont\fontsize{7}{7}\itshape}{\thesection}{1em}{}
+
 
 \newcommand{\bibent}{\noindent \hangindent 40pt}
 \newenvironment{workscited}{\newpage \begin{center} Works Cited \end{center}}{\newpage }
@@ -32,17 +47,6 @@
 % Math related packages
 \usepackage[fleqn]{amsmath}
 \usepackage{esvect}
-
-\usepackage{titlesec}
-
-\titleformat{\section}
-  {\normalfont\fontsize{11}{11}\bfseries\scshape}{\thesection}{1em}{}
-
-\titleformat{\subsection}
-  {\normalfont\fontsize{9}{9}\bfseries\itshape}{\thesection}{1em}{}
-
-\titleformat{\subsubsection}
-  {\normalfont\fontsize{7}{7}\itshape}{\thesection}{1em}{}
 
 \begin{document}
 
@@ -79,7 +83,7 @@ The bubbles form an impassable barrier (Wiley et al. 2011) for the fish, and con
 The ring of bubbles forming the bubble-net can be seen from the surface of the water (figure 1), and as the column of bubbles corrals prey the team of humpback whales lunge from the columns center to feed as seen in figure 2.
 
 \subsubsection*{WOA Mathematically Modeling the Bubble-Net}
-In the exploration phase of the algorithm whales are dispersed throughout the search space using a stochastic process, and will iteratively migrate towards the current best candidate solution (Mirjalili 2016) according to the following equations:
+In the exploration phase of the algorithm whales are dispersed throughout the search space using a stochastic process, and will iteratively migrate towards the current best candidate solution (Mirjalili 2016) according to equations 1--4.
 
 \begin{equation}
 	\vec{D} = |\vec{C}.\vec{X}^*(t) - \vec{X}(t)|
@@ -96,6 +100,10 @@ In the exploration phase of the algorithm whales are dispersed throughout the se
 \begin{equation}
 	\vec{C} = 2\cdot\vec{r}
 \end{equation}
+
+Where $\cdot$ is element by element multiplication, $| |$ is the absolute value, $\vec{X}^*$ is the current best best solution, $\vec{A}$ and $\vec{C}$ are coefficient vectors and $t$ denotes the current iteration (Mirjalili 2016).
+The vector $\vec{a}$ decreseases linearly from $2$ to $0$ and $\vec{r}$ is a random vector in $[0,1]$ (Mirjalili 2016) $\vec{r}$ is needed to ensure all points in the search space are reachable, and $\vec{a}$ gradually shrinks the search space.
+
 
 \section*{WOA Applications and Evolution}
 \subsection*{Data Mining}
