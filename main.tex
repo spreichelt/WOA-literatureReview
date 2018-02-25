@@ -19,7 +19,7 @@
 %\doublespacing
 %\usepackage[document]{ragged2e}
 %\setlength\RaggedRightParindent{4em}
-\setlength\parindent{0em}
+\setlength\parindent{2em}
 
 % Reformat section styles
 \usepackage{titlesec}
@@ -63,7 +63,7 @@
     \end{center}
 
 \section*{Introduction}
-\TODO{Talk about the more general Swarm Optimization Aglorithm Context to motivate WOA}
+\TODO{Talk about the more general Swarm Optimization Algorithm Context to motivate WOA}
 Since there introduction in \TODO{year, reference} with \TODO{author, algorithm} swarm algorithms have proven competitive with other meta-heuristic algorithms, and are attractive models because of their underlying simplicity.
 Swarm algorithms are also attractive because they are relatively easy to implement, do not rely on knowledge of the gradient, can overcome problems posed by local optima, and can be adapted for a wide range of optimization problems (Mirjalili \& Lewis 2016).
 Meta-heuristic approaches have appeared in the literature since the 1960s with evolution and eventually genetically modeled algorithms, with algorithms based on swarm intelligence first appearing with Ant Colony Optimization in 1992 (Wahab et al 2015).
@@ -86,7 +86,7 @@ The ring of bubbles forming the bubble-net can be seen from the surface of the w
 In the exploration phase of the algorithm whales are dispersed throughout the search space using a stochastic process, and will iteratively migrate towards the current best candidate solution (Mirjalili 2016) according to equations 1--4.
 
 \begin{equation}
-	\vec{D} = |\vec{C}.\vec{X}^*(t) - \vec{X}(t)|
+	\vec{D} = |\vec{C}\cdot\vec{X}^*(t) - \vec{X}(t)|
 \end{equation}
 
 \begin{equation}
@@ -103,11 +103,40 @@ In the exploration phase of the algorithm whales are dispersed throughout the se
 
 Where $\cdot$ is element by element multiplication, $| |$ is the absolute value, $\vec{X}^*$ is the current best best solution, $\vec{A}$ and $\vec{C}$ are coefficient vectors and $t$ denotes the current iteration (Mirjalili 2016).
 The vector $\vec{a}$ decreseases linearly from $2$ to $0$ and $\vec{r}$ is a random vector in $[0,1]$ (Mirjalili 2016) $\vec{r}$ is needed to ensure all points in the search space are reachable, and $\vec{a}$ gradually shrinks the search space.
+Equations 1--4 model the basic encircling of prey preformed by the swarm of whales and easily extends to n-dimensional space where the search agents occupy a hypercube (Mirjalili 2016).
 
+The exploration phase of the algorithm relies on stochastic principles by using a random search agent in place of the best according to equations 5--6.
+
+\begin{equation}
+	\vec{D} = |\vec{C}\cdot\vec{X}_{rand} - \vec{X}|
+\end{equation}
+
+\begin{equation}
+	\vec{X}(t+1) = \vec{X}_{rand} - \vec{A}\cdot\vec{D}
+\end{equation}
+
+The exploitation phase of the algorithm also uses a stochastic process to improve convergence by randomly using either the spiral or double loop attack pattern on a candidate solution.
+Equation 7 introduces a spiral pattern and a mechanism to randomly switch between the spiral and encircling behaviors.
+
+\begin{equation}
+	\vec{X}(t+1) =
+	\begin{cases}
+		\vec{X}^*(t) - \vec{A}\cdot\vec{D} &if \; p < 0.5\\
+		\vec{D}'\cdot e^{bl} \cdot cos(2\pi l) + \vec{X}^*(t) &if \; p \geq 0.5\\
+   \end{cases}
+\end{equation}
+
+Where $b$ is a constant for the logarithmic spiral and $l$ is a random number in $[-1, 1]$ (Mirjalili 2016).
 
 \section*{WOA Applications and Evolution}
 \subsection*{Data Mining}
 Modern scale problems with vast amounts of available data can be approached using swarm algorithms, particularly when they are enhanced with the parallel computing techniques---i.e. partitioning the search space---that the algorithms easily accommodate (Cicirelli 2015).
+
+\subsubsection*{WOA Pseudocode, Implementation, and Results}
+\TODO{Insert pseudocode algorithm as a figure}
+
+\TODO{Talk about the code, and benchmark results}
+
 \subsection*{Neural Net Feature Reduction}
 \subsection*{Augmented WOA approaches}
 
