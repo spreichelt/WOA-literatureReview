@@ -17,6 +17,9 @@
 
 % Packages related to figures
 \usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage[font=scriptsize,labelfont=bf, justification=centering]{caption}
 
 % Text formatting packages and macros
 %\doublespacing
@@ -39,9 +42,6 @@
 \newcommand{\bibent}{\noindent \hangindent 40pt}
 \newenvironment{workscited}{\newpage \begin{center} Works Cited \end{center}}{\newpage }
 \usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage[font=scriptsize,labelfont=bf, justification=centering]{caption}
 \usepackage{xcolor}
 \usepackage[group-separator={,}]{siunitx}
 \newcommand{\TODO}[1]{\textcolor{red}{[#1]}}
@@ -80,7 +80,6 @@ The Whale Optimization Algorithm (WOA) is the most recent swarm based meta-heuri
 The WOA draws its inspiration from a hunting behavior recorded in rare populations of humpback whales called bubble-net feeding, which is a technique that allows groups of whales to efficiently corral and consume small fish (Wiley et al. 2011).
 The algorithm uses both the whale's swarming behavior that seeks out potential prey as the exploration phase of the meta-heuristic and the cooperative attack pattern known as bubble-net for the exploitation phase.
 \TODO{Maybe remove this sentence to a later section and discuss the high level algorithm better here}
-The algorithm is demonstratively competitive with both canon swarm algorithms---ie Particle Swarm Optimization---as well as more mature classes of meta-heuristics like Evolutionary algorithms (Mirjalili 2016).
 
 \subsubsection*{Bubble-net Foraging: Cetological Background}
 The hunting behavior which informs the WOA involves a swarm of humpback whales finding a target school of fish, encircling the prey, and executing a bubble-net.
@@ -95,17 +94,21 @@ The ring of bubbles forming the bubble-net can be seen from the surface of the w
 	\includegraphics[width=\textwidth]{working-together.jpeg}
 \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\caption{Bubble spiral aerial view courtesy of NOAA}
-	\includegraphics[width=8cm]{spiral.jpg}
-\end{figure}
+\begin{minipage}{0.45\textwidth}
+	\begin{figure}[H]
+		\centering
+		\caption{Bubble spiral aerial view courtesy of NOAA}
+		\includegraphics[width=0.9\textwidth]{spiral.jpg}
+	\end{figure}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+	\begin{figure}[H]
+		\centering
+		\caption{Humpback whales lunging through the center of a completed bubble net}
+		\includegraphics[width=\textwidth]{lunge.jpg}
+	\end{figure}
+\end{minipage}
 
-\begin{figure}[h]
-	\centering
-	\caption{Humpback whales lunging through the center of a completed bubble net}
-	\includegraphics[width=8cm]{lunge.jpg}
-\end{figure}
 
 \subsubsection*{Mathematically Modeling the Bubble-Net Behavior}
 In the exploration phase of the algorithm whales are dispersed throughout the search space using a stochastic process, and will iteratively migrate towards the current best candidate solution (Mirjalili 2016) according to equations 1--4.
@@ -153,42 +156,44 @@ Equation 7 introduces a spiral pattern and a mechanism to randomly switch betwee
 
 Where $b$ is a constant for the logarithmic spiral and $l$ is a random number in $[-1, 1]$ (Mirjalili 2016).
 
+\begin{figure}{t}
+	\caption{WOA pseudo code (Mirjalili \& Lewis 2016)}
+	\begin{algorithm}[H]
+		\algsetup{linenosize=\tiny}
+		\scriptsize
+		\begin{algorithmic}[1]
+			\STATE Initialize the whales population $X_i(i = 1,2, \dots, n)$
+			\STATE Calculate the fitness of each search agent
+			\STATE $X^* = $ the best search agent
+			\WHILE {$t <$ maximum number of iterations}
+				\FOR {each search agent}
+					\STATE update a, A, C, l, and p
+					\IF {$p < 0.5$}
+						\IF {$|A| < 1$}
+							\STATE Update the position of the current search agent by Equation 1
+						\ELSE
+							\STATE Select a random search agent ($X_{rand}$)
+							\STATE Update the position of the current search agent by Equation 6
+						\ENDIF
+					\ELSE
+						\STATE Update the position of the current search by Equation 7
+					\ENDIF
+				\ENDFOR
+				\STATE Check if any search agent goes beyond the search space and amend it
+				\STATE Calculate the fitness of each search agent
+				\STATE Update $X^*$ if there is a better solution
+				\STATE $t = t+1$
+			\ENDWHILE
+			\STATE \RETURN $X^*$ 
+		\end{algorithmic}
+	\end{algorithm}
+\end{figure}
+
 \subsubsection*{Algorithm Implementation and Benchmark Results}
 The pseudo code for the WOA in figure 4 is a testament to how simple meta-heuristic swarm algorithms can be in practice.
 The transition between exploration and exploitation is facilitated by $\vec{A}$ gradually reducing in size (Mirjalili \& Lewis 2016), and the entire process utilizes random chance through $p$ and $X_{rand}$.
-
-\begin{wrapfigure}{R}{0.55\textwidth}
-	\caption{WOA pseudo code (Mirjalili \& Lewis 2016)}
-	\begin{minipage}{0.55\textwidth}
-		\begin{algorithm}[H]
-			\begin{algorithmic}
-				\STATE Initialize the whales population $X_i(i = 1,2, \dots, n)$
-				\STATE Calculate the fitness of each search agent
-				\STATE $X^* = $ the best search agent
-				\WHILE {$t <$ maximum number of iterations}
-					\FOR {each search agent}
-						\STATE update a, A, C, l, and p
-						\IF {$p < 0.5$}
-							\IF {$|A| < 1$}
-								\STATE Update the position of the current search agent by Equation 1
-							\ELSE
-								\STATE Select a random search agent ($X_{rand}$)
-								\STATE Update the position of the current search agent by Equation 6
-							\ENDIF
-						\ELSE
-							\STATE Update the position of the current search by Equation 7
-						\ENDIF
-					\ENDFOR
-					\STATE Check if any search agent goes beyond the search space and amend it
-					\STATE Calculate the fitness of each search agent
-					\STATE Update $X^*$ if there is a better solution
-					\STATE $t = t+1$
-				\ENDWHILE
-				\STATE \RETURN $X^*$ 
-			\end{algorithmic}
-		\end{algorithm}
-	\end{minipage}
-\end{wrapfigure}
+The algorithm is demonstratively competitive with both canon swarm algorithms---ie Particle Swarm Optimization---as well as more mature classes of meta-heuristics like Evolutionary algorithms (Mirjalili 2016), and its reliance on only 2 parameters $(A$ and $C)$ makes it a very attractive option for research.
+In the initial benchmarks Mirjalili \& Lewis used the WOA converged either most or second most efficiently in 29 tests comparing representative meta-heuristics like Particle Swarm Optimization, Gravitational Search Algorithm, and Differential Evolution Algorithm.
 
 \section*{WOA Applications and Evolution}
 \subsection*{Data Mining}
