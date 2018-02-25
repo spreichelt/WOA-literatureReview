@@ -37,6 +37,9 @@
 \titleformat{\subsection}
   {\normalfont\fontsize{9}{9}\bfseries\itshape}{\thesection}{1em}{}
 
+\titleformat{\subsubsection}
+  {\normalfont\fontsize{7}{7}\itshape}{\thesection}{1em}{}
+
 \begin{document}
 
     \thispagestyle{empty}
@@ -60,12 +63,11 @@ The Whale Optimization Algorithm (WOA) is the most recent swarm based meta-heuri
 
 \subsection*{The Whale Optimization Algorithm (WOA)}
 \TODO{Talk about WOA in specific terms, bridge gap between swarm algorithm and humpback whale stuff}
-Swarm algorithms, since appearing in the 60's, have found a diverse set of applications in modern research.
-Modern scale problems with vast amounts of available data can be approached using swarm algorithms, particularly when they are enhanced with the parallel computing techniques---i.e. partitioning the search space---that the algorithms easily accommodate (Cicirelli 2015).
-Mirjalili has introduced a new approach called Whale Optimization Algorithm (WOA) to the field that is competitive both with canon swarm algorithms such as Particle Swarm Optimization (PSO) or Ant Colony Optimization (ACO), and other classes of meta-heuristic methods such has Genetic Algorithms (GA) (2016).
-The WOA draws its inspiration from a hunting behavior recorded in rare populations of humpback whales called bubble-net feeding, which is a technique that allows groups of whales to efficiently corral and consume krill (Wiley et al. 2011).
+Mirjalili's WOA is demonstratively competitive with both canon swarm algorithms---ie Particle Swarm Optimization---as well as other more mature classes of meta-heuristics like evolutionary algorithms (Mirjalili 2016).
+The WOA draws its inspiration from a hunting behavior recorded in rare populations of humpback whales called bubble-net feeding, which is a technique that allows groups of whales to efficiently corral and consume small fish (Wiley et al. 2011).
+The algorithm uses both the whale's swarming behavior that seeks out potential prey as the exploration phase of the meta-heuristic and the cooperative attack pattern known as bubble-net for the exploitation phase.
 
-\subsection*{Bubble-net Foraging: Cetological Background}
+\subsubsection*{Bubble-net Foraging: Cetological Background}
 The hunting behavior which informs the WOA relies on a group of whales herding a school of fish and a single whale executing the bubble-net.
 This whale will dive below the target prey and by exploiting the high maneuverability of humpback whales (Wiley et al. 2011) encircles a school of fish with a column of bubbles purposefully emanating from its blow hole.
 The bubbles form an impassable barrier (Wiley et al. 2011) for the fish, and concentric circles corral target prey into a tight area either through an upward-spiral or double loop maneuver (Wiley et al. 2011).
@@ -73,6 +75,7 @@ The ring of bubbles forming the bubble-net can be seen from the surface of the w
 
 \section*{WOA Applications and Evolution}
 \subsection*{Data Mining}
+Modern scale problems with vast amounts of available data can be approached using swarm algorithms, particularly when they are enhanced with the parallel computing techniques---i.e. partitioning the search space---that the algorithms easily accommodate (Cicirelli 2015).
 \subsection*{Neural Net Feature Reduction}
 \subsection*{Augmented WOA approaches}
 
