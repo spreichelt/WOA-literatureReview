@@ -22,10 +22,10 @@
 \usepackage[font=scriptsize,labelfont=bf, justification=centering]{caption}
 
 % Text formatting packages and macros
-%\doublespacing
-%\usepackage[document]{ragged2e}
-%\setlength\RaggedRightParindent{4em}
-\setlength\parindent{2em}
+\doublespacing
+\usepackage[document]{ragged2e}
+\setlength\RaggedRightParindent{4em}
+%\setlength\parindent{2em}
 
 % Reformat section styles
 \usepackage{titlesec}
@@ -33,10 +33,10 @@
   {\normalfont\fontsize{11}{11}\bfseries\scshape}{\thesection}{1em}{}
 
 \titleformat{\subsection}
-  {\normalfont\fontsize{9}{9}\bfseries\itshape}{\thesection}{1em}{}
+  {\normalfont\fontsize{9}{9}\bfseries}{\thesection}{1em}{}
 
 \titleformat{\subsubsection}
-  {\normalfont\fontsize{8}{8}\itshape}{\thesection}{1em}{}
+  {\normalfont\fontsize{9}{9}\itshape}{\thesection}{1em}{}
 
 
 \newcommand{\bibent}{\noindent \hangindent 40pt}
@@ -66,44 +66,35 @@
     \end{flushleft}
     \vspace{1em}
     \begin{center}
-        Review of Originating Work on Whale Optimization Algorithm and Subsequent Applications
+		Review of Originating Work on Whale Optimization Algorithm and Subsequent Applications in Feature Selection and Optimal Path Finding
     \end{center}
 
 \section*{Introduction}
 Swarm algorithms are an attractive path for research because they are relatively easy to implement, do not rely on knowledge of the gradient, can overcome problems posed by local optima, and can be adapted for a wide range of optimization problems (Mirjalili 2016).
-Meta-heuristic approaches appeared in the literature in the 1960s with algorithms modeled on Evolution, while algorithms modeled on swarm intelligence first appeared in 1992 with Marco Dorigo's Ant Colony Optimization (Wahab et al 2015).
+Meta-heuristic approaches appeared in the literature in the 1960s with algorithms modeled on evolution, while algorithms modeled on swarm intelligence first appeared in 1992 with Marco Dorigo's Ant Colony Optimization (Wahab et al. 2015).
 The Whale Optimization Algorithm (WOA) is the most recent swarm based meta-heuristic algorithm, and has quickly proved itself as a competitive general purpose optimization approach (Mirjalili 2016).
 
 \subsection*{The Whale Optimization Algorithm (WOA)}
-The WOA draws its inspiration from a hunting behavior recorded in rare populations of humpback whales called bubble-net feeding, which is a technique that allows groups of whales to efficiently corral and consume small fish (Wiley et al. 2011).
+The WOA draws its inspiration from a hunting behavior recorded in rare populations of humpback whales called bubble-net feeding, which is a technique that allows groups of whales to efficiently corral and consume small fish (Wiley et al.. 2011).
 The algorithm uses both the whale's swarming behavior that seeks out potential prey as the exploration phase of the meta-heuristic and the cooperative attack pattern known as bubble-net for the exploitation phase.
 
 \subsubsection*{Bubble-net Foraging: Cetological Background}
 The hunting behavior which informs the WOA involves a swarm of humpback whales finding a target school of fish, encircling it, then cooperatively coralling the prey into a tight area with a single whale executing the interesting bubble-net behavior.
-The bubble-netting whale dives below the target prey and encircles it with a column of bubbles purposefully emanating from its blow hole (Wiley et al 2011).
+The bubble-netting whale dives below the target prey and encircles it with a column of bubbles purposefully emanating from its blow hole (Wiley et al. 2011).
 The bubbles form an impassable barrier (Wiley et al. 2011) for the fish, and concentric circles corral target prey into a shrinking area through either an upward-spiral or double loop maneuver (Wiley et al. 2011).
-The ring of bubbles forming the bubble-net can be seen from the surface of the water (figure 2), and as the column of bubbles corrals prey the team of humpback whales lunge from the columns center to feed as seen in figure 3.
+The ring of bubbles forming the bubble-net can be seen from the surface of the water (Figure 1), and as the column of bubbles corrals prey the team of humpback whales lunge from the columns center to feed as seen in Figure 3.
 
-%\begin{figure}[h]
-%	\caption{Bubble-net foraging infographic courtesy of www.INCA.com}
-%	\includegraphics[width=\textwidth]{working-together.jpeg}
-%\end{figure}
+\begin{figure}[h]
+	\centering
+	\caption{Bubble spiral aerial view courtesy of NOAA}
+	\includegraphics[width=\textwidth]{spiral.jpg}
+\end{figure}
 
-%\begin{minipage}{0.45\textwidth}
-	\begin{figure}[h]
-		\centering
-		\caption{Bubble spiral aerial view courtesy of NOAA}
-		\includegraphics[width=\textwidth]{spiral.jpg}
-	\end{figure}
-%\end{minipage}
-%\begin{minipage}{0.45\textwidth}
-	\begin{figure}[H]
-		\centering
-		\caption{Humpback whales lunging through the center of a completed bubble net}
-		\includegraphics[width=\textwidth]{lunge.jpg}
-	\end{figure}
-%\end{minipage}
-
+\begin{figure}[h]
+	\centering
+	\caption{Humpback whales lunging through the center of a completed bubble net}
+	\includegraphics[width=\textwidth]{lunge.jpg}
+\end{figure}
 
 \subsubsection*{Mathematically Modeling the Bubble-Net Behavior}
 In the exploration phase of the algorithm whales are dispersed throughout the search space using a stochastic process, and will iteratively migrate towards the current best candidate solution (Mirjalili 2016) according to equations 1--4.
@@ -146,7 +137,7 @@ Equation 7 introduces a spiral pattern and a mechanism to randomly switch betwee
 	\begin{cases}
 		\vec{X}^*(t) - \vec{A}\cdot\vec{D} &if \; p < 0.5\\
 		\vec{D}'\cdot e^{bl} \cdot cos(2\pi l) + \vec{X}^*(t) &if \; p \geq 0.5\\
-   \end{cases}
+	\end{cases}
 \end{equation}
 
 Where $b$ is a constant for the logarithmic spiral and $l$ is a random number in $[-1, 1]$ (Mirjalili 2016).
@@ -184,19 +175,20 @@ Where $b$ is a constant for the logarithmic spiral and $l$ is a random number in
 	\end{algorithm}
 \end{figure}
 
+
 \subsubsection*{Algorithm Implementation and Benchmark Results}
 The transition between exploration and exploitation is facilitated by $\vec{A}$ gradually reducing in size (Mirjalili \& Lewis 2016), and the entire process utilizes random chance through $p$ and $X_{rand}$.
 The algorithm is demonstratively competitive with both canon swarm algorithms---ie Particle Swarm Optimization---as well as more mature classes of meta-heuristics like Evolutionary algorithms (Mirjalili 2016), and its reliance on only 2 parameters $(A$ and $C)$ makes it a very attractive option for research.
-In the initial benchmarks Mirjalili \& Lewis used the WOA converged either most or second most efficiently in 29 tests comparing representative meta-heuristics like Particle Swarm Optimization, Gravitational Search Algorithm, and Differential Evolution Algorithm.
+In the initial benchmarks Mirjalili and Lewis found the WOA converged either most or second most efficiently in 29 tests comparing representative meta-heuristics like Particle Swarm Optimization, Gravitational Search Algorithm, and Differential Evolution Algorithm.
 Figure 3 contains the entire pseudo-code for WOA.
 
 \section*{WOA Applications and Evolution}
 Since its 2016 introduction WOA has seen use in many optimization problems in engineering but the remainder of this review will focus on research that applies WOA as a feature selector, and as an optimal path finder with an emphasis on techniques that improve the WOA in the target application.
 
 \subsection*{Dimensionality Reduction Through Feature Selection Using WOA}
-Sayed et al use WOA as a tool to reduce the dimensionality of a large set of medical data that is has a machine-learning application with breast cancer prediction.
-WOA is used to select features that are fed into a support vector machine (SVM) and the results are benchmarked against other approaches commonly used for this application (Sayed et al 2017).
-Without any problem specific optimizations the WOA feature selection outpreformed the approaches currently in use for the breat cancer prediction machine learning problem (Sayed et al 2017).
+Sayed et al. use WOA as a tool to reduce the dimensionality of a large set of medical data that is has a machine-learning application with breast cancer prediction.
+WOA is used to select features that are fed into a support vector machine (SVM) and the results are benchmarked against other approaches commonly used for this application (Sayed et al. 2017).
+Without any problem specific optimizations the WOA feature selection outpreformed the approaches currently in use for the breat cancer prediction machine learning problem (Sayed et al. 2017).
 
 In another machine learning application Mafarja and Mirjalili device a method to improve the convergence rate and accuracy of the WOA by combining it with other approaches.
 Combinations of Simulated Anneling, WOA, and Tournament Selection are benchmarked against eachother and other common techniques (Mafarja \& Mirjalili 2017).
