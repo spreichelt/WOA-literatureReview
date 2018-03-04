@@ -1,62 +1,64 @@
-\documentclass[11pt]{article}
-\usepackage[letterpaper]{geometry}
-\usepackage{times}
-\geometry{top=1.0in, bottom=1.0in, left=1.0in, right=1.0in}
-\usepackage{setspace}
-\usepackage{fancyhdr}
-\usepackage{fancyvrb} %Need for ventering verbatim using BVerbatim
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{Reichelt \thepage}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-%To make sure we actually have header 0.5in away from top edge
-%12pt is one-sixth of an inch. Subtract this from 0.5in to get headsep value
-\setlength\headsep{0.333in}
+{ %Enviornment / Packages
+    \documentclass[11pt]{article}
+    \usepackage[letterpaper]{geometry}
+    \usepackage{times}
+    \geometry{top=1.0in, bottom=1.0in, left=1.0in, right=1.0in}
+    \usepackage{setspace}
+    \usepackage{fancyhdr}
+    \usepackage{fancyvrb} %Need for ventering verbatim using BVerbatim
+    \pagestyle{fancy}
+    \fancyhf{}
+    \rhead{Reichelt \thepage}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+    %To make sure we actually have header 0.5in away from top edge
+    %12pt is one-sixth of an inch. Subtract this from 0.5in to get headsep value
+    \setlength\headsep{0.333in}
 
 
-% Packages related to figures
-\usepackage{wrapfig}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage[font=scriptsize,labelfont=bf, justification=centering]{caption}
+    % Packages related to figures
+    \usepackage{wrapfig}
+    \usepackage{graphicx}
+    \usepackage{caption}
+    \usepackage[font=scriptsize,labelfont=bf, justification=centering]{caption}
 
-% Text formatting packages and macros
-\doublespacing
-\usepackage[document]{ragged2e}
-\setlength\RaggedRightParindent{4em}
-%\setlength\parindent{2em}
+    % Text formatting packages and macros
+    \doublespacing
+    \usepackage[document]{ragged2e}
+    \setlength\RaggedRightParindent{4em}
+    %\setlength\parindent{2em}
 
-% Reformat section styles
-\usepackage{titlesec}
-\titleformat{\section}
-  {\normalfont\fontsize{11}{11}\bfseries\scshape}{\thesection}{1em}{}
+    % Reformat section styles
+    \usepackage{titlesec}
+    \titleformat{\section}
+      {\normalfont\fontsize{11}{11}\bfseries\scshape}{\thesection}{1em}{}
 
-\titleformat{\subsection}
-  {\normalfont\fontsize{9}{9}\bfseries}{\thesection}{1em}{}
+    \titleformat{\subsection}
+      {\normalfont\fontsize{9}{9}\bfseries}{\thesection}{1em}{}
 
-\titleformat{\subsubsection}
-  {\normalfont\fontsize{9}{9}\itshape}{\thesection}{1em}{}
+    \titleformat{\subsubsection}
+      {\normalfont\fontsize{9}{9}\itshape}{\thesection}{1em}{}
 
 
-\newcommand{\bibent}{\noindent \hangindent 40pt}
-\newenvironment{workscited}{\newpage \begin{center} Works Cited \end{center}}{\newpage }
-\usepackage{hyperref}
-\usepackage{xcolor}
-\usepackage[group-separator={,}]{siunitx}
-\newcommand{\TODO}[1]{\textcolor{red}{[#1]}}
-\newcommand{\PASS}[1]{\verb| #1|}
+    \newcommand{\bibent}{\noindent \hangindent 40pt}
+    \newenvironment{workscited}{\newpage \begin{center} Works Cited \end{center}}{\newpage }
+    \usepackage{hyperref}
+    \usepackage{xcolor}
+    \usepackage[group-separator={,}]{siunitx}
+    \newcommand{\TODO}[1]{\textcolor{red}{[#1]}}
+    \newcommand{\PASS}[1]{\verb| #1|}
 
-% Math related packages
-\usepackage[fleqn]{amsmath}
-\usepackage{esvect}
+    % Math related packages
+    \usepackage[fleqn]{amsmath}
+    \usepackage{esvect}
 
-% Algorithm package
-\usepackage{algorithmic}
-\usepackage{algorithm}
+    % Algorithm package
+    \usepackage{algorithmic}
+    \usepackage{algorithm}
+}
 
 \begin{document}
-
+{ % Header
     \thispagestyle{empty}
     \begin{flushleft}
         Scott Reichelt\\
@@ -65,166 +67,172 @@
         \today\\
     \end{flushleft}
     \vspace{1em}
+}
     \begin{center}
-		Review of Whale Optimization Algorithm With an Emphasis on Applications for Feature Selection
+        Review of Whale Optimization Algorithm With an Emphasis on Applications for Optimal Feature Selection in Data Analysis
     \end{center}
 
-\section*{Introduction}
-Swarm algorithms are an attractive path for research because they are relatively easy to implement, do not rely on knowledge of the gradient, can overcome problems posed by local optima, and can be adapted for a wide range of optimization problems (Mirjalili 2016).
-Meta-heuristic approaches appeared in the literature in the 1960s with algorithms modeled on evolution, while algorithms modeled on swarm intelligence first appeared in 1992 with Marco Dorigo's Ant Colony Optimization (Wahab et al. 2015).
-The Whale Optimization Algorithm (WOA) is the most recent swarm based meta-heuristic algorithm, and has quickly proved itself as a competitive general purpose optimization approach (Mirjalili 2016).
+\section*{Introduction} {
+    Swarm algorithms are an attractive path for research for there relative easy to implement, unnecisity of knowledge of the gradient, ability to bypass local optima, and adaptability for a wide range of optimization problems (Mirjalili 2016).
+    Meta-heuristic approaches appeared in the literature in the 1960s with algorithms modeled on evolution, while algorithms modeled on swarm intelligence first appeared in 1992 with Marco Dorigo's Ant Colony Optimization (Wahab et al. 2015).
+    The Whale Optimization Algorithm (WOA) is the most recent swarm based meta-heuristic algorithm, and has quickly proved itself as a competitive general purpose optimization approach (Mirjalili 2016). 
+    This review first provides a summary of the WOA, then presents several recent applications of the WOA which seek to enhance its convergence rate for the feature selection optimization problem.
+}
 
-\subsection*{The Whale Optimization Algorithm (WOA)}
-The WOA draws its inspiration from a hunting behavior recorded in rare populations of humpback whales called bubble-net feeding, which is a technique that allows groups of whales to efficiently corral and consume small fish (Wiley et al.. 2011).
-The algorithm uses both the whale's swarming behavior that seeks out potential prey as the exploration phase of the meta-heuristic and the cooperative attack pattern known as bubble-net for the exploitation phase.
+\section*{The Whale Optimization Algorithm}{
+    The WOA draws its inspiration from a hunting behavior recorded in rare populations of humpback whales called bubble-net feeding.
+    The technique allows groups of whales to efficiently corral and consume small fish (Wiley et al. 2011).
+    The algorithm uses the swarming behavior of the whales both when they seeks out potential prey and the cooperative attack pattern known as bubble-net to model the exploration and exploitation phases of the meta-heuristic.
+}
 
-\subsubsection*{Bubble-net Foraging: Cetological Background}
-The hunting behavior which informs the WOA involves a swarm of humpback whales finding a target school of fish, encircling it, then cooperatively coralling the prey into a tight area with a single whale executing the interesting bubble-net behavior.
-The bubble-netting whale dives below the target prey and encircles it with a column of bubbles purposefully emanating from its blow hole (Wiley et al. 2011).
-The bubbles form an impassable barrier (Wiley et al. 2011) for the fish, and concentric circles corral target prey into a shrinking area through either an upward-spiral or double loop maneuver (Wiley et al. 2011).
-The ring of bubbles forming the bubble-net can be seen from the surface of the water (Figure 1), and as the column of bubbles corrals prey the team of humpback whales lunge from the columns center to feed as seen in Figure 3.
+\subsection*{Bubble-net Foraging: Cetological Background} {
+    The hunting behavior which informs the WOA involves a swarm of humpback whales finding a target school of fish, encircling it, then cooperatively coralling the prey into a tight area with a single whale executing the bubble-net behavior.
+    The bubble-netting whale dives below the target prey and encircles it with a column of bubbles purposefully emanating from its blow hole (Wiley et al. 2011).
+    The bubbles form an impassable barrier (Wiley et al. 2011) for the fish, and concentric circles corral target prey into a shrinking area through either an upward-spiral or double loop maneuver (Wiley et al. 2011).
+    The ring of bubbles forming the bubble-net can be seen from the surface of the water (Figure 1), and as the column of bubbles corrals prey the team of humpback whales lunge from the columns center to feed as seen in Figure 2.
 
-\begin{figure}[h]
-	\centering
-	\caption{Bubble spiral aerial view courtesy of NOAA}
-	\includegraphics[width=\textwidth]{spiral.jpg}
-\end{figure}
+    \begin{figure}[h]
+        \centering
+        \caption{Bubble spiral aerial view courtesy of NOAA}
+        \includegraphics[width=\textwidth]{spiral.jpg}
+    \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\caption{Humpback whales lunging through the center of a completed bubble net}
-	\includegraphics[width=\textwidth]{lunge.jpg}
-\end{figure}
+    \begin{figure}[h]
+        \centering
+        \caption{Humpback whales lunging through the center of a completed bubble net}
+        \includegraphics[width=\textwidth]{lunge.jpg}
+    \end{figure}
+}
+\subsection*{Mathematically Modeling the Bubble-Net Behavior} {
+    In the exploration phase of the algorithm whales are dispersed throughout the search space using a stochastic process, and will iteratively migrate towards the current best candidate solution according to equations 1--4 (Mirjalili 2016).
 
-\subsubsection*{Mathematically Modeling the Bubble-Net Behavior}
-In the exploration phase of the algorithm whales are dispersed throughout the search space using a stochastic process, and will iteratively migrate towards the current best candidate solution (Mirjalili 2016) according to equations 1--4.
+    \begin{equation}
+        \vec{D} = |\vec{C}\cdot\vec{X}^*(t) - \vec{X}(t)|
+    \end{equation}
 
-\begin{equation}
-	\vec{D} = |\vec{C}\cdot\vec{X}^*(t) - \vec{X}(t)|
-\end{equation}
+    \begin{equation}
+        \vec{X}(t + 1) = |\vec{X}(t) - \vec{A}\cdot\vec{D})|
+    \end{equation}
 
-\begin{equation}
-	\vec{X}(t + 1) = |\vec{X}(t) - \vec{A}\cdot\vec{D})|
-\end{equation}
+    \begin{equation}
+        \vec{A} = 2\vec{a}\cdot\vec{r}-\vec{a}
+    \end{equation}
 
-\begin{equation}
-	\vec{A} = 2\vec{a}\cdot\vec{r}-\vec{a}
-\end{equation}
+    \begin{equation}
+        \vec{C} = 2\cdot\vec{r}
+    \end{equation}
 
-\begin{equation}
-	\vec{C} = 2\cdot\vec{r}
-\end{equation}
+    Where $\cdot$ is element by element multiplication, $| \;\; |$ is the absolute value, $\vec{X}^*$ is the current best solution, $\vec{A}$ and $\vec{C}$ are coefficient vectors, and $t$ denotes the current iteration (Mirjalili 2016).
+    The vector $\vec{a}$ decreseases linearly from $2$ to $0$, which gradually shrinks the search space, while $\vec{r}$ is a random vector in [$0,1]$that ensures all points in the search space are reachable (Mirjalili 2016).
+    Equations 1--4 model the basic encircling of prey preformed by the swarm of whales and easily extends to n-dimensional space where the search agents occupy a hypercube (Mirjalili 2016).
 
-Where $\cdot$ is element by element multiplication, $| \;\; |$ is the absolute value, $\vec{X}^*$ is the current best best solution, $\vec{A}$ and $\vec{C}$ are coefficient vectors and $t$ denotes the current iteration (Mirjalili 2016).
-The vector $\vec{a}$ decreseases linearly from $2$ to $0$ to gradually shrink the search space while $\vec{r}$ is a random vector in that ensures all points in the search space are reachable $[0,1]$ (Mirjalili 2016).
-Equations 1--4 model the basic encircling of prey preformed by the swarm of whales and easily extends to n-dimensional space where the search agents occupy a hypercube (Mirjalili 2016).
+    The exploration phase of the algorithm relies on stochastic principles by using a random search agent in place of the best according to equations 5--6.
 
-The exploration phase of the algorithm relies on stochastic principles by using a random search agent in place of the best according to equations 5--6.
+    \begin{equation}
+        \vec{D} = |\vec{C}\cdot\vec{X}_{rand} - \vec{X}|
+    \end{equation}
 
-\begin{equation}
-	\vec{D} = |\vec{C}\cdot\vec{X}_{rand} - \vec{X}|
-\end{equation}
+    \begin{equation}
+        \vec{X}(t+1) = \vec{X}_{rand} - \vec{A}\cdot\vec{D}
+    \end{equation}
 
-\begin{equation}
-	\vec{X}(t+1) = \vec{X}_{rand} - \vec{A}\cdot\vec{D}
-\end{equation}
+    The exploitation phase of the algorithm also uses a stochastic process to improve convergence by randomly using either the spiral or double loop attack pattern on a candidate solution.
+    Equation 7 introduces a spiral pattern and a mechanism to randomly switch between the spiral and encircling behaviors.
 
-The exploitation phase of the algorithm also uses a stochastic process to improve convergence by randomly using either the spiral or double loop attack pattern on a candidate solution.
-Equation 7 introduces a spiral pattern and a mechanism to randomly switch between the spiral and encircling behaviors.
+    \begin{equation}
+        \vec{X}(t+1) =
+        \begin{cases}
+            \vec{X}^*(t) - \vec{A}\cdot\vec{D} &if \; p < 0.5\\
+            \vec{D}'\cdot e^{bl} \cdot cos(2\pi l) + \vec{X}^*(t) &if \; p \geq 0.5\\
+        \end{cases}
+    \end{equation}
 
-\begin{equation}
-	\vec{X}(t+1) =
-	\begin{cases}
-		\vec{X}^*(t) - \vec{A}\cdot\vec{D} &if \; p < 0.5\\
-		\vec{D}'\cdot e^{bl} \cdot cos(2\pi l) + \vec{X}^*(t) &if \; p \geq 0.5\\
-	\end{cases}
-\end{equation}
+    Where $b$ is a constant for the logarithmic spiral and $l$ is a random number in $[-1, 1]$ (Mirjalili 2016).
 
-Where $b$ is a constant for the logarithmic spiral and $l$ is a random number in $[-1, 1]$ (Mirjalili 2016).
+    \begin{figure}{t}
+        \caption{WOA pseudo code (Mirjalili \& Lewis 2016)}
+        \begin{algorithm}[H]
+            \algsetup{linenosize=\tiny}
+            \scriptsize
+            \begin{algorithmic}[1]
+                \STATE Initialize the whales population $X_i(i = 1,2, \dots, n)$
+                \STATE Calculate the fitness of each search agent
+                \STATE $X^* = $ the best search agent
+                \WHILE {$t <$ maximum number of iterations}
+                    \FOR {each search agent}
+                        \STATE update a, A, C, l, and p
+                        \IF {$p < 0.5$}
+                            \IF {$|A| < 1$}
+                                \STATE Update the position of the current search agent by Equation 1
+                            \ELSE
+                                \STATE Select a random search agent ($X_{rand}$)
+                                \STATE Update the position of the current search agent by Equation 6
+                            \ENDIF
+                        \ELSE
+                            \STATE Update the position of the current search by Equation 7
+                        \ENDIF
+                    \ENDFOR
+                    \STATE Check if any search agent goes beyond the search space and amend it
+                    \STATE Calculate the fitness of each search agent
+                    \STATE Update $X^*$ if there is a better solution
+                    \STATE $t = t+1$
+                \ENDWHILE
+                \STATE \RETURN $X^*$ 
+            \end{algorithmic}
+        \end{algorithm}
+    \end{figure}
+    }
 
-\begin{figure}{t}
-	\caption{WOA pseudo code (Mirjalili \& Lewis 2016)}
-	\begin{algorithm}[H]
-		\algsetup{linenosize=\tiny}
-		\scriptsize
-		\begin{algorithmic}[1]
-			\STATE Initialize the whales population $X_i(i = 1,2, \dots, n)$
-			\STATE Calculate the fitness of each search agent
-			\STATE $X^* = $ the best search agent
-			\WHILE {$t <$ maximum number of iterations}
-				\FOR {each search agent}
-					\STATE update a, A, C, l, and p
-					\IF {$p < 0.5$}
-						\IF {$|A| < 1$}
-							\STATE Update the position of the current search agent by Equation 1
-						\ELSE
-							\STATE Select a random search agent ($X_{rand}$)
-							\STATE Update the position of the current search agent by Equation 6
-						\ENDIF
-					\ELSE
-						\STATE Update the position of the current search by Equation 7
-					\ENDIF
-				\ENDFOR
-				\STATE Check if any search agent goes beyond the search space and amend it
-				\STATE Calculate the fitness of each search agent
-				\STATE Update $X^*$ if there is a better solution
-				\STATE $t = t+1$
-			\ENDWHILE
-			\STATE \RETURN $X^*$ 
-		\end{algorithmic}
-	\end{algorithm}
-\end{figure}
+\subsection*{Algorithm Implementation and Benchmark Results} {
+    The transition between exploration and exploitation is facilitated by $\vec{A}$ gradually reducing in size (Mirjalili \& Lewis 2016), and the entire process utilizes random chance through $p$ and $X_{rand}$.
+    The algorithm is demonstratively competitive with both canon swarm algorithms---ie Particle Swarm Optimization---as well as more mature classes of meta-heuristics like Evolutionary algorithms (Mirjalili 2016), and its reliance on only 2 parameters $(A$ and $C)$ makes it a very attractive option for research.
+    In the initial benchmarks Mirjalili and Lewis found the WOA converged either most or second most efficiently in 29 tests comparing representative meta-heuristics like Particle Swarm Optimization, Gravitational Search Algorithm, and Differential Evolution Algorithm.
+    Figure 3 contains the entire pseudo-code for WOA.
+}
 
+\section*{WOA Applications and Evolution} {
+    Since its 2016 introduction WOA has seen use in many optimization problems in engineering, but the remainder of this review will focus on applications that employ WOA as a feature selection optimizer.
+    The ability of the WOA to reach the entire search space using either a random or the best agent while avoiding converging towards local minima (Sharawi et al. 2017) make WOA a promising choice for this type of optimization problem.
+    In applications of data mining optimal feature selection can improve computation speeds by removing irrelevant features or selecting the strongest prediciting subset of features (Hussien et al. 2017).
+}
 
-\subsubsection*{Algorithm Implementation and Benchmark Results}
-The transition between exploration and exploitation is facilitated by $\vec{A}$ gradually reducing in size (Mirjalili \& Lewis 2016), and the entire process utilizes random chance through $p$ and $X_{rand}$.
-The algorithm is demonstratively competitive with both canon swarm algorithms---ie Particle Swarm Optimization---as well as more mature classes of meta-heuristics like Evolutionary algorithms (Mirjalili 2016), and its reliance on only 2 parameters $(A$ and $C)$ makes it a very attractive option for research.
-In the initial benchmarks Mirjalili and Lewis found the WOA converged either most or second most efficiently in 29 tests comparing representative meta-heuristics like Particle Swarm Optimization, Gravitational Search Algorithm, and Differential Evolution Algorithm.
-Figure 3 contains the entire pseudo-code for WOA.
+\subsection*{Dimensionality Reduction Through Feature Selection Using WOA} {
+    Sayed et al. use WOA as a tool to reduce the dimensionality of a large set of medical data that is has a machine-learning application with breast cancer prediction.
+    WOA is used to select features that are fed into a support vector machine (SVM) and the results are benchmarked against other approaches commonly used for this application (Sayed et al. 2017).
 
-\section*{WOA Applications and Evolution}
-Since its 2016 introduction WOA has seen use in many optimization problems in engineering, but the remainder of this review will focus on applications that employ WOA as a feature selection optimizer.
-The ability of the WOA to reach the entire search space using either a random or the best agent while avoiding converging towards local minima (Sharawi et al. 2017) make WOA a promising choice for this type of optimization problem.
-In applications of data mining optimal feature selection can improve computation speeds by removing irrelevant features or selecting the strongest prediciting subset of features (Hussien et al. 2017).
-
-
-\subsection*{Dimensionality Reduction Through Feature Selection Using WOA}
-Sayed et al. use WOA as a tool to reduce the dimensionality of a large set of medical data that is has a machine-learning application with breast cancer prediction.
-WOA is used to select features that are fed into a support vector machine (SVM) and the results are benchmarked against other approaches commonly used for this application (Sayed et al. 2017).
-Without any problem specific optimizations the WOA feature selection outpreformed the approaches currently in use for the breat cancer prediction machine learning problem (Sayed et al. 2017).
-
-In another machine learning application Mafarja and Mirjalili device a method to improve the convergence rate and accuracy of the WOA by combining it with other approaches.
-Combinations of Simulated Anneling, WOA, and Tournament Selection are benchmarked against eachother and other common techniques (Mafarja \& Mirjalili 2017).
+    In another machine learning application Mafarja and Mirjalili device a method to improve the convergence rate and accuracy of the WOA by combining it with other approaches.
+    Combinations of Simulated Anneling, WOA, and Tournament Selection are benchmarked against eachother and other common techniques (Mafarja \& Mirjalili 2017).
+}
 
 
 
 \begin{workscited}
 
-\bibent
-Sayed G.I., Darwish A., Hassanien A.E., Pan JS. 2017. Breast Cancer Diagnosis Approach Based on Meta-Heuristic Optimization Algorithm Inspired by the Bubble-Net Hunting Strategy of Whales. Pan, JS; Lin, JCW; Wang, CH; Jiang, XH. 10th International Conference on Genetic and Evolutionary Computing (ICGEC); NOV 07-09, 2016; Fujian Univ Technol, Fuzhou, PEOPLES R CHINA. Springer, Cham; [accessed 2018 Feb 20]. 306--313. \url{https://link.springer.com/chapter/10.1007/978-3-319-48490-7_36}.\url{doi.org/10.1007/978-3-319}\\\url{48490-7_36}
+    \bibent
+    Sayed G.I., Darwish A., Hassanien A.E., Pan JS. 2017. Breast Cancer Diagnosis Approach Based on Meta-Heuristic Optimization Algorithm Inspired by the Bubble-Net Hunting Strategy of Whales. Pan, JS; Lin, JCW; Wang, CH; Jiang, XH. 10th International Conference on Genetic and Evolutionary Computing (ICGEC); NOV 07-09, 2016; Fujian Univ Technol, Fuzhou, PEOPLES R CHINA. Springer, Cham; [accessed 2018 Feb 20]. 306--313. \url{https://link.springer.com/chapter/10.1007/978-3-319-48490-7_36}.\url{doi.org/10.1007/978-3-319}\\\url{48490-7_36}
 
-\bibent
-Mirjalili, S. 2016. The Whale Optimization Algorithm. Advances in Engineering Software. [accessed 2018 Feb 18]; 95: 51--67. \url{https://www.sciencedirect.com/science/article/pii/S0965997816300163} \url{doi.org/10.1016/j.advengsoft.2016.01.008}
+    \bibent
+    Mirjalili, S. 2016. The Whale Optimization Algorithm. Advances in Engineering Software. [accessed 2018 Feb 18]; 95: 51--67. \url{https://www.sciencedirect.com/science/article/pii/S0965997816300163} \url{doi.org/10.1016/j.advengsoft.2016.01.008}
 
-\bibent
-Ab Wahab MN, Nefti-Meziani S, Atyabi A. 2015. A Comprehensive Review of Swarm Optimization Algorithms. PLoS ONE. [accessed 2018 Feb 21]; 10(5): e0122827. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0122827} \url{doi.org/10.13}\\\url{71/journal.pone.0122827}
+    \bibent
+    Ab Wahab MN, Nefti-Meziani S, Atyabi A. 2015. A Comprehensive Review of Swarm Optimization Algorithms. PLoS ONE. [accessed 2018 Feb 21]; 10(5): e0122827. \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0122827} \url{doi.org/10.13}\\\url{71/journal.pone.0122827}
 
-\bibent
-Wiley D. 2011. Underwater components of humpback whale bubble-net feeding behaviour. Behaviour. [accessed 2018 Feb 19]; 148(5-6), 575--602. \url{http://booksandjournals.brillonline.com/content/journals/10.1163/000579511x570893}.\url{doi.10.1163/00057951}\\\url{1X570893}.
+    \bibent
+    Wiley D. 2011. Underwater components of humpback whale bubble-net feeding behaviour. Behaviour. [accessed 2018 Feb 19]; 148(5-6), 575--602. \url{http://booksandjournals.brillonline.com/content/journals/10.1163/000579511x570893}.\url{doi.10.1163/00057951}\\\url{1X570893}.
 
 
-%\bibent %figure 1
-%Two humpback whales bubble net feeding. Image collected under MMPA research permit \#17355.
-%Credit: NOAA Fisheries/Allison Henry
-%
-%\bibent %figure 2
-%By Evadb; Edit by jjron. (Own work) [Public domain], via Wikimedia Commons
-%
-\bibent
-Wu, J. (2018). Path planning for solar-powered UAV in urban environment. NEUROCOMPUTING, 275, 2055-2065.
+    %\bibent %figure 1
+    %Two humpback whales bubble net feeding. Image collected under MMPA research permit \#17355.
+    %Credit: NOAA Fisheries/Allison Henry
+    %
+    %\bibent %figure 2
+    %By Evadb; Edit by jjron. (Own work) [Public domain], via Wikimedia Commons
+    %
+    \bibent
+    Wu, J. (2018). Path planning for solar-powered UAV in urban environment. NEUROCOMPUTING, 275, 2055-2065.
 
-\bibent
-Horng, M. (2017). A Multi-Objective Optimal Vehicle Fuel Consumption Based on Whale Optimization Algorithm. Advances in Intelligent Information Hiding and Multimedia Signal Processing : Proceeding of the Twelfth International Conference on Intelligent Information Hiding and Multimedia Signal Processing, Nov., 21-23, 2016, Kaohsiung, Taiwan., 64, 371-380.
+    \bibent
+    Horng, M. (2017). A Multi-Objective Optimal Vehicle Fuel Consumption Based on Whale Optimization Algorithm. Advances in Intelligent Information Hiding and Multimedia Signal Processing : Proceeding of the Twelfth International Conference on Intelligent Information Hiding and Multimedia Signal Processing, Nov., 21-23, 2016, Kaohsiung, Taiwan., 64, 371-380.
 
 \end{workscited}
 
