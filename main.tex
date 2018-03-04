@@ -1,61 +1,59 @@
-{ %Enviornment / Packages
-    \documentclass[11pt]{article}
-    \usepackage[letterpaper]{geometry}
-    \usepackage{times}
-    \geometry{top=1.0in, bottom=1.0in, left=1.0in, right=1.0in}
-    \usepackage{setspace}
-    \usepackage{fancyhdr}
-    \usepackage{fancyvrb} %Need for ventering verbatim using BVerbatim
-    \pagestyle{fancy}
-    \fancyhf{}
-    \rhead{Reichelt \thepage}
-    \renewcommand{\headrulewidth}{0pt}
-    \renewcommand{\footrulewidth}{0pt}
-    %To make sure we actually have header 0.5in away from top edge
-    %12pt is one-sixth of an inch. Subtract this from 0.5in to get headsep value
-    \setlength\headsep{0.333in}
+\documentclass[11pt]{article}
+\usepackage[letterpaper]{geometry}
+\usepackage{times}
+\geometry{top=1.0in, bottom=1.0in, left=1.0in, right=1.0in}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{fancyvrb} %Need for ventering verbatim using BVerbatim
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Reichelt \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%To make sure we actually have header 0.5in away from top edge
+%12pt is one-sixth of an inch. Subtract this from 0.5in to get headsep value
+\setlength\headsep{0.333in}
 
 
-    % Packages related to figures
-    \usepackage{wrapfig}
-    \usepackage{graphicx}
-    \usepackage{caption}
-    \usepackage[font=scriptsize,labelfont=bf, justification=centering]{caption}
+% Packages related to figures
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage[font=scriptsize,labelfont=bf, justification=centering]{caption}
 
-    % Text formatting packages and macros
-    \doublespacing
-    \usepackage[document]{ragged2e}
-    \setlength\RaggedRightParindent{4em}
-    %\setlength\parindent{2em}
+% Text formatting packages and macros
+\doublespacing
+\usepackage[document]{ragged2e}
+\setlength\RaggedRightParindent{4em}
+%\setlength\parindent{2em}
 
-    % Reformat section styles
-    \usepackage{titlesec}
-    \titleformat{\section}
-      {\normalfont\fontsize{11}{11}\bfseries\scshape}{\thesection}{1em}{}
+% Reformat section styles
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\fontsize{11}{11}\bfseries\scshape}{\thesection}{1em}{}
 
-    \titleformat{\subsection}
-      {\normalfont\fontsize{9}{9}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\fontsize{9}{9}\bfseries}{\thesection}{1em}{}
 
-    \titleformat{\subsubsection}
-      {\normalfont\fontsize{9}{9}\itshape}{\thesection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\fontsize{9}{9}\itshape}{\thesection}{1em}{}
 
 
-    \newcommand{\bibent}{\noindent \hangindent 40pt}
-    \newenvironment{workscited}{\newpage \begin{center} Works Cited \end{center}}{\newpage }
-    \usepackage{hyperref}
-    \usepackage{xcolor}
-    \usepackage[group-separator={,}]{siunitx}
-    \newcommand{\TODO}[1]{\textcolor{red}{[#1]}}
-    \newcommand{\PASS}[1]{\verb| #1|}
+\newcommand{\bibent}{\noindent \hangindent 40pt}
+\newenvironment{workscited}{\newpage \begin{center} Works Cited \end{center}}{\newpage }
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[group-separator={,}]{siunitx}
+\newcommand{\TODO}[1]{\textcolor{red}{[#1]}}
+\newcommand{\PASS}[1]{\verb| #1|}
 
-    % Math related packages
-    \usepackage[fleqn]{amsmath}
-    \usepackage{esvect}
+% Math related packages
+\usepackage[fleqn]{amsmath}
+\usepackage{esvect}
 
-    % Algorithm package
-    \usepackage{algorithmic}
+% Algorithm package
+\usepackage{algorithmic}
     \usepackage{algorithm}
-}
 
 \begin{document}
 { % Header
@@ -79,7 +77,7 @@
     This review first provides a summary of the WOA, then presents several recent applications of the WOA which seek to enhance its convergence rate for the feature selection optimization problem.
 }
 
-\section*{The Whale Optimization Algorithm}{
+\section*{The Whale Optimization Algorithm} {
     The WOA draws its inspiration from a hunting behavior recorded in rare populations of humpback whales called bubble-net feeding.
     The technique allows groups of whales to efficiently corral and consume small fish (Wiley et al. 2011).
     The algorithm uses the swarming behavior of the whales both when they seeks out potential prey and the cooperative attack pattern known as bubble-net to model the exploration and exploitation phases of the meta-heuristic.
@@ -184,28 +182,35 @@
     }
 
 \subsection*{Algorithm Implementation and Benchmark Results} {
-    The transition between exploration and exploitation is facilitated by $\vec{A}$ gradually reducing in size (Mirjalili \& Lewis 2016), and the entire process utilizes random chance through $p$ and $X_{rand}$.
-    The algorithm is demonstratively competitive with both canon swarm algorithms---ie Particle Swarm Optimization---as well as more mature classes of meta-heuristics like Evolutionary algorithms (Mirjalili 2016), and its reliance on only 2 parameters $(A$ and $C)$ makes it a very attractive option for research.
-    In the initial benchmarks Mirjalili and Lewis found the WOA converged either most or second most efficiently in 29 tests comparing representative meta-heuristics like Particle Swarm Optimization, Gravitational Search Algorithm, and Differential Evolution Algorithm.
+    The algorithm is demonstratively competitive with both canon swarm algorithms---ie Particle Swarm Optimization---as well as more mature classes of meta-heuristics like Evolutionary algorithms (Mirjalili 2016).
+    In the initial benchmarks Mirjalili found the WOA converged either most or second most efficiently in 29 tests comparing representative meta-heuristics like Particle Swarm Optimization, Gravitational Search Algorithm, and Differential Evolution Algorithm.
     Figure 3 contains the entire pseudo-code for WOA.
+    The relative simplicity of implementing the algorithm combined with its competetive benchmarks lend to the algorithms appeal for the potential to further improve its convergence rate.
+    The transition between exploration and exploitation is facilitated by $\vec{a}$ gradually reducing in size (thus shrinking the search space), and the entire process leverages random chance through $p$ and $X_{rand}$ (Mirjalili 2016).
+    The Algorithms combination of gradually shrinking the search space while exploring towards a random search agent gives it a strong exploration phase.
+    The exploitation phase also utilizes random chance to give search agents opportunities to explore more of the search space while moving towards the candidate solution, aiding the algorithm in avioding local optima.
 }
 
-\section*{WOA Applications and Evolution} {
+\section*{Dimensionality Reduction Using WOA as an Optimal Feature Secture: Overview} {
     Since its 2016 introduction WOA has seen use in many optimization problems in engineering, but the remainder of this review will focus on applications that employ WOA as a feature selection optimizer.
     The ability of the WOA to reach the entire search space using either a random or the best agent while avoiding converging towards local minima (Sharawi et al. 2017) make WOA a promising choice for this type of optimization problem.
     In applications of data mining optimal feature selection can improve computation speeds by removing irrelevant features or selecting the strongest prediciting subset of features (Hussien et al. 2017).
 }
 
 \subsection*{Dimensionality Reduction Through Feature Selection Using WOA} {
-    Sayed et al. use WOA as a tool to reduce the dimensionality of a large set of medical data that is has a machine-learning application with breast cancer prediction.
+    Sayed et al. use WOA as a tool to reduce the dimensionality of a large set of medical data that has a machine-learning application with breast cancer prediction.
     WOA is used to select features that are fed into a support vector machine (SVM) and the results are benchmarked against other approaches commonly used for this application (Sayed et al. 2017).
 
     In another machine learning application Mafarja and Mirjalili device a method to improve the convergence rate and accuracy of the WOA by combining it with other approaches.
     Combinations of Simulated Anneling, WOA, and Tournament Selection are benchmarked against eachother and other common techniques (Mafarja \& Mirjalili 2017).
 }
+\subsection*{Methods for Improving WOA Convergence Behavior for Feature Selection} {
+    Place
+}
 
-
-
+\subsection*{Benchmarks of WOA for Feature Selection} {
+    Place
+}
 \begin{workscited}
 
     \bibent
