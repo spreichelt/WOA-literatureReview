@@ -121,7 +121,7 @@
     \end{equation}
 
     Where $\cdot$ is element by element multiplication, $| \;\; |$ is the absolute value, $\vec{X}^*$ is the current best solution, $\vec{A}$ and $\vec{C}$ are coefficient vectors, and $t$ denotes the current iteration (Mirjalili 2016).
-    The vector $\vec{a}$ decreseases linearly from $2$ to $0$, which gradually shrinks the search space, while $\vec{r}$ is a random vector in [$0,1]$that ensures all points in the search space are reachable (Mirjalili 2016).
+    The vector $\vec{a}$ decreases linearly from $2$ to $0$, which gradually shrinks the search space, while $\vec{r}$ is a random vector in [$0,1]$that ensures all points in the search space are reachable (Mirjalili 2016).
     Equations 1--4 model the basic encircling of prey preformed by the swarm of whales and easily extends to n-dimensional space where the search agents occupy a hypercube (Mirjalili 2016).
 
     The exploration phase of the algorithm relies on stochastic principles by using a random search agent in place of the best according to equations 5--6.
@@ -179,37 +179,35 @@
             \end{algorithmic}
         \end{algorithm}
     \end{figure}
-    }
 
 \subsection*{Algorithm Implementation and Benchmark Results} {
     The algorithm is demonstratively competitive with both canon swarm algorithms---ie Particle Swarm Optimization---as well as more mature classes of meta-heuristics like Evolutionary algorithms (Mirjalili 2016).
     In the initial benchmarks Mirjalili found the WOA converged either most or second most efficiently in 29 tests comparing representative meta-heuristics like Particle Swarm Optimization, Gravitational Search Algorithm, and Differential Evolution Algorithm.
     Figure 3 contains the entire pseudo-code for WOA.
-    The relative simplicity of implementing the algorithm combined with its competetive benchmarks lend to the algorithms appeal for the potential to further improve its convergence rate.
+    The relative simplicity of implementing the algorithm combined with its competitive benchmarks lend to the algorithms appeal for the potential to further improve its convergence rate.
     The transition between exploration and exploitation is facilitated by $\vec{a}$ gradually reducing in size (thus shrinking the search space), and the entire process leverages random chance through $p$ and $X_{rand}$ (Mirjalili 2016).
     The Algorithms combination of gradually shrinking the search space while exploring towards a random search agent gives it a strong exploration phase.
-    The exploitation phase also utilizes random chance to give search agents opportunities to explore more of the search space while moving towards the candidate solution, aiding the algorithm in avioding local optima.
+    The exploitation phase also utilizes random chance to give search agents opportunities to explore more of the search space while moving towards the candidate solution, aiding the algorithm in avoiding local optima.
 }
 
-\section*{Dimensionality Reduction Using WOA as an Optimal Feature Secture: Overview} {
+\section*{Dimensionality Reduction Using WOA as an Optimal Feature Selector} {
     Since its 2016 introduction WOA has seen use in many optimization problems in engineering, but the remainder of this review will focus on applications that employ WOA as a feature selection optimizer.
     The ability of the WOA to reach the entire search space using either a random or the best agent while avoiding converging towards local minima (Sharawi et al. 2017) make WOA a promising choice for this type of optimization problem.
-    In applications of data mining optimal feature selection can improve computation speeds by removing irrelevant features or selecting the strongest prediciting subset of features (Hussien et al. 2017).
+    In applications of data mining optimal feature selection can improve computation speeds by removing irrelevant features or selecting the strongest predicting subset of features (Hussien et al. 2017).
+
+\subsection*{Methods for Using WOA as an Optimal Feature Selector} {
+    Sayed et al. as well as Emary and Zawbaa use the WOA in a wrapper-based method with no adjustments to the original definition of WOA presented in 2016.
+    Sayed et al. apply the algorithm for in a data classification setting where machine learning techniques are used to diagnos breast cancer, while Emary and Zawbaa determine the efficacy of WOA on several test data sets in the wrapper-based feature selector application.
+    In the machine learning breast cancer diagnosis problem, WOA selects features that are fed into a support vector machine (SVM) and the results are benchmarked against other approaches commonly used for this application (Sayed et al. 2017).
+    Zawbaa and Emary use the k-nearest neighbor (KNN) classifier in every test, and directly compare both the convergence rate and accuracy of WOA to feature selecting algorithms currently used in the field (2017).
+    Mafarja and Mirjalili explore a hybrid meta-heuristic that combines exploration phase of WOA with the exploitation phase of Simulated Annealing (SA) as a feature selector on various test data sets (2017).
+    Hussien et al. use a hyperbolic tangent function to construct an altered WOA that maps continuous values to binary values to improve fitness calculations in the context of optimal feature selection (2017).
 }
 
-\subsection*{Dimensionality Reduction Through Feature Selection Using WOA} {
-    Sayed et al. use WOA as a tool to reduce the dimensionality of a large set of medical data that has a machine-learning application with breast cancer prediction.
-    WOA is used to select features that are fed into a support vector machine (SVM) and the results are benchmarked against other approaches commonly used for this application (Sayed et al. 2017).
+\subsection*{Results of WOA as an Optimal Feature Selector} {
+    All four papers found WOA to be effective for the problem.
+    For breast cancer diagnosing WOA achieved 98.7\% accuracy with 99.15\% precision, outperforming the currently used approaches as seen in Figure 4 (Sayed et al. 2017).
 
-    In another machine learning application Mafarja and Mirjalili device a method to improve the convergence rate and accuracy of the WOA by combining it with other approaches.
-    Combinations of Simulated Anneling, WOA, and Tournament Selection are benchmarked against eachother and other common techniques (Mafarja \& Mirjalili 2017).
-}
-\subsection*{Methods for Improving WOA Convergence Behavior for Feature Selection} {
-    Place
-}
-
-\subsection*{Benchmarks of WOA for Feature Selection} {
-    Place
 }
 \begin{workscited}
 
